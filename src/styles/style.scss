@@ -1,0 +1,64 @@
+* {
+  font-family: "Manrope", sans-serif;
+  font-family: "Anton", sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 667px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../data/images/header_pic.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  .header-logo {
+    position: fixed;
+    top: 51px;
+    left: 69px;
+    img {
+      width: 207px;
+      height: 25.26px;
+    }
+  }
+  .header-text {
+    text-transform: uppercase;
+    font-size: 44px;
+    text-align: center;
+    color: #ffd15b;
+  }
+  .search-bar {
+    width: 954px;
+    height: 72px;
+    position: relative;
+    .text-search {
+      width: 100%;
+      height: 100%;
+      border-radius: 11px;
+      font-family: "Manrope", "sans-serif";
+      padding-left: 35px;
+    }
+    .button-search {
+      position: absolute;
+      right: -30px;
+      top: 14px;
+      width: 51px;
+      height: 52px;
+      background-image: url("../data/images/search-glass.svg");
+      text-indent: -9999px;
+      overflow: hidden;
+      white-space: nowrap;
+      border: none;
+      background-color: white;
+      cursor: pointer;
+    }
+    .button-search:hover {
+      background-image: url("../data/images/search-glass-hover.svg");
+    }
+  }
+}

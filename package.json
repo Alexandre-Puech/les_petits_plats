@@ -2,13 +2,17 @@
   "name": "les_petits_plats",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint ./src",
+    "sass": "sass src/styles/style.scss:src/styles/style.css",
+    "watch": "sass --watch src/styles/style.scss:src/styles/style.css"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "eslint": "^9.16.0"
+    "eslint": "^9.16.0",
+    "sass": "^1.82.0"
   }
 }
