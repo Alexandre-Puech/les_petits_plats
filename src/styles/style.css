@@ -133,7 +133,6 @@ header .search-bar .button-search:hover {
 }
 .recipe-card .card-ingredients .ingredient-name {
   font-weight: 500;
-  white-space: nowrap;
 }
 .recipe-card .card-ingredients .ingredient-quantity {
   color: #7a7a7a;
