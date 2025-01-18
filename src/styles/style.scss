@@ -158,3 +158,24 @@ header {
     }
   }
 }
+
+#dropdown-menus {
+  display: flex;
+  flex-direction: row;
+  margin-left: 104px;
+  gap: 66px;
+  .dropdown-menu {
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    height: 56px;
+    width: 195px;
+    border-radius: 11px;
+    padding: 17px 16px;
+    border: 0px;
+  }
+  option {
+    font-size: 14px;
+    font-weight: 400px;
+  }
+}
