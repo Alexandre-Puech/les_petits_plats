@@ -1,41 +1,40 @@
 import { recipes } from "../data/recipe.js";
+import { normalizeString } from "./normalize-string.js";
 
 const userSearch = "coco";
 
 function filterRecipes(userSearch, recipes) {
-  //step 1: titre
+  if (userSearch.length < 3) {
+    return;
+  }
+
+  const normalizedUserSearch = normalizeString(userSearch);
+
   const matchingNameArray = recipes.filter((recipe) => {
-    return recipe.name.includes(userSearch);
+    const normalizedName = normalizeString(recipe.name);
+    return normalizedName.includes(normalizedUserSearch);
   });
 
-  // step 2: ingrédients
   const matchingIngredientsArray = recipes.filter((recipe) => {
-    // return true quand on a au moins un des ingredients qui match
-    const matchingRecipedIngredients = recipe.ingredients.filter((ingredient) =>
-      ingredient.ingredient.includes(userSearch)
+    const matchingRecipedIngredients = recipe.ingredients.filter(
+      (ingredient) => {
+        const normalizedIngredient = normalizeString(ingredient.ingredient);
+        return normalizedIngredient.includes(normalizedUserSearch);
+      }
     );
     return matchingRecipedIngredients.length > 0;
   });
 
-  // step3: description
   const matchingDescriptionArray = recipes.filter((recipe) => {
-    return recipe.description.includes(userSearch);
+    const normalizedDescription = normalizeString(recipe.description);
+    return normalizedDescription.includes(normalizedUserSearch);
   });
 
-  // step4: enlever doublon
   const result = [
     ...matchingNameArray,
     ...matchingIngredientsArray,
     ...matchingDescriptionArray,
   ];
-  console.log(result);
-  return new Set(result);
-
-  // return final
+  return Array.from(new Set(result));
 }
-console.log("hello");
-console.log(filterRecipes(userSearch, recipes));
-
-// TODO: voir la casse
-// userSearch > 3 caractères
-// transformer le Set en array
+filterRecipes(userSearch, recipes);
