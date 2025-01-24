@@ -1,11 +1,11 @@
 import { recipes } from "../data/recipe.js";
-import { normalizeString } from "./normalize-string.js";
+import { normalizeString } from "./../utils/string.js";
 
-const userSearch = "Concombre";
+const userSearch = document.getElementById("userSearch").value;
 
 const normalizedUserSearch = normalizeString(userSearch);
 
-function filterRecipes(normalizedUserSearch, recipes) {
+export function filterRecipes(normalizedUserSearch, recipes) {
   if (userSearch.length < 3) {
     return;
   }

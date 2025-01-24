@@ -19,8 +19,9 @@
         cherchez parmi plus de 1500 recettes<br />
         du quotidien, simples et délicieuses
       </div>
-      <form class="search-bar" method="get">
+      <form class="search-bar" method="get" id="mainSearchBar">
         <input
+          id="userSearch"
           class="text-search"
           type="text"
           name="query"
@@ -31,36 +32,33 @@
     </header>
     <main>
       <div id="dropdown-menus">
-        <!-- remplacer mes dropdowns par des boutons, et gérer l'ouverture du dropdown en js -->
         <div class="dropdown">
-          <label for="ingredients-menu">Ingrédients</label>
-          <select
-            id="ingredients-menu"
-            name="ingredients"
-            class="dropdown-menu"
-          ></select>
+          <button id="ingredients-menu" class="dropdown-button">
+            Ingrédients
+          </button>
+          <div id="ingredientsDropdown" class="dropdown-content"></div>
         </div>
         <div class="dropdown">
-          <label for="appareils-menu">Appareils</label>
-          <select
-            id="appareils-menu"
-            name="appareils"
-            class="dropdown-menu"
-          ></select>
+          <button id="appareils-menu" class="dropdown-button">Appareils</button>
+          <div id="appliancesDropdown" class="dropdown-content"></div>
         </div>
         <div class="dropdown">
-          <label for="ustensiles-menu">Ustensiles</label>
-          <select
-            id="ustensiles-menu"
-            name="ustensiles"
-            class="dropdown-menu"
-          ></select>
+          <button id="ustensiles-menu" class="dropdown-button">
+            Ustensiles
+          </button>
+          <div id="ustensilsDropdown" class="dropdown-content"></div>
         </div>
       </div>
+      <div id="recipesCount"></div>
       <div id="recipe-cards"></div>
     </main>
     <footer></footer>
     <script type="module" src="../templates/recipe-card.js"></script>
+    <script type="module" src="../templates/fillingDropdown.js"></script>
     <script type="module" src="../templates/dropdown.js"></script>
+    <script type="module" src="../templates/recipesCount.js"></script>
+    <script type="module" src="../utils/string.js"></script>
+    <script type="module" src="../algo/algo-for-loop.js"></script>
+    <script type="module" src="../templates/searchBar.js"></script>
   </body>
 </html>
