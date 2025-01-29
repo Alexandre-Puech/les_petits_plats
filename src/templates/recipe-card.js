@@ -28,6 +28,8 @@ export function createRecipeCard({
   time,
   description,
   ingredients,
+  appliance,
+  ustensils,
 }) {
   return `<div class="recipe-card">
       <img src="${image}" alt="${name}">
@@ -46,16 +48,18 @@ export function createRecipeCard({
         <div class="card-time">
         <p>${time}min</p>
         </div>
+        <div class="hidden-appliance hidden">${appliance}</div>
+        <div class="hidden-ustensils hidden">${ustensils.join(", ")}</div>
       </div>
     </div>`;
 }
 
 //3: display all the cards
 document.addEventListener("DOMContentLoaded", () => {
-  displayAllCards();
+  displayCards(recipes);
 });
 
-export function displayAllCards() {
+export function displayCards(recipes) {
   const container = document.getElementById("recipe-cards");
   container.innerHTML = recipes
     .map((recipe) => createRecipeCard(recipe))

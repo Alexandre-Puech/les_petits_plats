@@ -1,20 +1,19 @@
-import { recipes } from "../data/recipe.js";
-
-// Appliances dropdownb
-function fillAppliancesDropdown(recipes) {
+// Appliances dropdown
+function fillAppliancesDropdown() {
   const appliancesDropdown = document.getElementById("appliancesDropdown");
   const appliancesSet = new Set();
 
-  recipes.forEach((recipe) => {
-    appliancesSet.add(recipe.appliance);
-  });
+  document
+    .querySelectorAll(".recipe-card .hidden-appliance")
+    .forEach((appliance) => {
+      appliancesSet.add(appliance.textContent.trim());
+    });
 
   appliancesDropdown.innerHTML = `<form class="search-bar" method="get">
         <input
           class="text-search"
           type="text"
           name="query"
-          placeholder="Rechercher une recette, un ingrédient, ..."
         />
         <button class="search-button" type="submit">Recherche</button>
       </form>`;
@@ -27,79 +26,73 @@ function fillAppliancesDropdown(recipes) {
   });
 }
 
-setTimeout(() => {
-  fillAppliancesDropdown(recipes);
-}, 100);
-
 // Ustensils dropdown
-function fillUstensilsDropdown(recipes) {
+function fillUstensilsDropdown() {
   const ustensilsDropdown = document.getElementById("ustensilsDropdown");
   const ustensilsSet = new Set();
 
-  recipes.forEach((recipe) => {
-    if (Array.isArray(recipe.ustensils)) {
-      recipe.ustensils.forEach((ustensil) => {
-        ustensilsSet.add(ustensil);
+  document
+    .querySelectorAll(".recipe-card .hidden-ustensils")
+    .forEach((ustensils) => {
+      ustensils.textContent.split(",").forEach((ustensil) => {
+        ustensilsSet.add(ustensil.trim());
       });
-    } else if (recipe.ustensils) {
-      ustensilsSet.add(recipe.ustensils);
-    }
-  });
+    });
+
   ustensilsDropdown.innerHTML = `<form class="search-bar" method="get">
         <input
           class="text-search"
           type="text"
           name="query"
-          placeholder="Rechercher une recette, un ingrédient, ..."
         />
         <button class="search-button" type="submit">Recherche</button>
       </form>`;
 
-  ustensilsSet.forEach((ustensils) => {
+  ustensilsSet.forEach((ustensil) => {
     const option = document.createElement("option");
-    option.value = ustensils;
-    option.textContent = ustensils;
+    option.value = ustensil;
+    option.textContent = ustensil;
     ustensilsDropdown.appendChild(option);
   });
 }
 
-setTimeout(() => {
-  fillUstensilsDropdown(recipes);
-}, 100);
-
 // Ingredients dropdown
-function fillIngredientsDropdown(recipes) {
+function fillIngredientsDropdown() {
   const ingredientsDropdown = document.getElementById("ingredientsDropdown");
   const ingredientsSet = new Set();
 
-  recipes.forEach((recipe) => {
-    if (Array.isArray(recipe.ingredients)) {
-      recipe.ingredients.forEach((ingredients) => {
-        ingredientsSet.add(ingredients.ingredient);
-      });
-    } else if (recipe.ingredients) {
-      ingredientsSet.add(recipe.ingredients);
-    }
-  });
+  document
+    .querySelectorAll(".recipe-card .card-ingredients .ingredient-name")
+    .forEach((ingredients) => {
+      ingredientsSet.add(ingredients.textContent.trim());
+    });
 
   ingredientsDropdown.innerHTML = `<form class="search-bar" method="get">
         <input
           class="text-search"
           type="text"
           name="query"
-          placeholder="Rechercher une recette, un ingrédient, ..."
         />
         <button class="search-button" type="submit">Recherche</button>
       </form>`;
 
-  ingredientsSet.forEach((ingredients) => {
+  ingredientsSet.forEach((ingredient) => {
     const option = document.createElement("option");
-    option.value = ingredients;
-    option.textContent = ingredients;
+    option.value = ingredient;
+    option.textContent = ingredient;
     ingredientsDropdown.appendChild(option);
   });
 }
 
-setTimeout(() => {
-  fillIngredientsDropdown(recipes);
-}, 100);
+// Update dropdowns when the page is loaded and when recipes are updated
+document.addEventListener("DOMContentLoaded", () => {
+  fillAppliancesDropdown();
+  fillUstensilsDropdown();
+  fillIngredientsDropdown();
+});
+
+export function updateDropdowns() {
+  fillAppliancesDropdown();
+  fillUstensilsDropdown();
+  fillIngredientsDropdown();
+}
