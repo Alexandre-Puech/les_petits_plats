@@ -1,36 +1,30 @@
-import { recipes } from "../data/recipe.js";
 import { normalizeString } from "./../utils/string.js";
 
-const userSearch = document.getElementById("userSearch").value;
-
-const normalizedUserSearch = normalizeString(userSearch);
-
-export function filterRecipes(normalizedUserSearch, recipes) {
+export function filterRecipes(userSearch, recipes) {
   if (userSearch.length < 3) {
     return;
   }
+
+  const normalizedUserSearch = normalizeString(userSearch);
   const filteredRecipes = new Set();
 
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
 
-    if (recipe.name.includes(normalizedUserSearch)) {
+    if (normalizeString(recipe.name).includes(normalizedUserSearch)) {
       filteredRecipes.add(recipe);
     }
 
-    if (recipe.description.includes(normalizedUserSearch)) {
+    if (normalizeString(recipe.description).includes(normalizedUserSearch)) {
       filteredRecipes.add(recipe);
     }
 
     for (let j = 0; j < recipe.ingredients.length; j++) {
       const ing = recipe.ingredients[j];
-      if (ing.ingredient.includes(normalizedUserSearch)) {
+      if (normalizeString(ing.ingredient).includes(normalizedUserSearch)) {
         filteredRecipes.add(recipe);
       }
     }
-
-    return Array.from(filteredRecipes);
   }
+  return Array.from(filteredRecipes);
 }
-
-filterRecipes(normalizedUserSearch, recipes);
