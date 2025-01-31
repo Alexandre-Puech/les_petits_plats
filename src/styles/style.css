@@ -194,7 +194,7 @@ header .search-bar .button-search:hover {
   gap: 66px;
   margin-top: 21px;
   font-family: "Manrope", sans-serif;
-  align-items: center;
+  align-items: baseline;
 }
 #dropdown-menus .dropdown {
   position: relative;
@@ -216,7 +216,7 @@ header .search-bar .button-search:hover {
   content: "";
   position: absolute;
   right: 18px;
-  top: 50%;
+  top: 28px;
   transform: translateY(-50%);
   border: solid black;
   border-width: 0 2px 2px 0;
@@ -239,14 +239,15 @@ header .search-bar .button-search:hover {
   border-top: none;
   padding-top: 8px;
   gap: 24px;
+  z-index: 1000;
 }
-#dropdown-menus .dropdown .dropdown-content .search-bar {
+#dropdown-menus .dropdown .dropdown-content .dropdown-search-bar {
   width: 163px;
   height: 36px;
   position: relative;
   margin: 0 auto 8px auto;
 }
-#dropdown-menus .dropdown .dropdown-content .search-bar .text-search {
+#dropdown-menus .dropdown .dropdown-content .dropdown-search-bar .dropdown-search {
   width: 100%;
   height: 100%;
   border-radius: 2px;
@@ -254,7 +255,36 @@ header .search-bar .button-search:hover {
   border: 1px solid #ccc;
   padding: 0;
 }
-#dropdown-menus .dropdown .dropdown-content .search-bar .search-button {
+#dropdown-menus .dropdown .dropdown-content .dropdown-search-bar .dropdown-close-button {
+  position: absolute;
+  right: 35px;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  display: none;
+}
+#dropdown-menus .dropdown .dropdown-content .dropdown-search-bar .dropdown-close-button::before, #dropdown-menus .dropdown .dropdown-content .dropdown-search-bar .dropdown-close-button::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 12px;
+  background-color: #000;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #7a7a7a;
+}
+#dropdown-menus .dropdown .dropdown-content .dropdown-search-bar .dropdown-close-button::before {
+  transform: translateX(-50%) rotate(45deg);
+}
+#dropdown-menus .dropdown .dropdown-content .dropdown-search-bar .dropdown-close-button::after {
+  transform: translateX(-50%) rotate(-45deg);
+}
+#dropdown-menus .dropdown .dropdown-content .dropdown-search-bar .dropdown-search-button {
   position: absolute;
   right: 5px;
   top: 50%;
@@ -268,7 +298,7 @@ header .search-bar .button-search:hover {
   cursor: pointer;
   text-indent: -9999px;
 }
-#dropdown-menus .dropdown .dropdown-content option {
+#dropdown-menus .dropdown .dropdown-content li {
   font-size: 14px;
   font-weight: 400;
   color: black;
@@ -280,11 +310,40 @@ header .search-bar .button-search:hover {
   width: 100%;
   text-align: left;
 }
-#dropdown-menus .dropdown .dropdown-content option:hover {
+#dropdown-menus .dropdown .dropdown-content li:hover {
   background-color: #ffd15b;
 }
 #dropdown-menus .dropdown .show {
   display: block;
+}
+#dropdown-menus .dropdown .tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  display: none;
+}
+#dropdown-menus .dropdown .tag-container .tag {
+  display: flex;
+  align-items: center;
+  background-color: #ffd15b;
+  border-radius: 10px;
+  padding: 4px 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  width: 141px;
+  height: 53px;
+}
+#dropdown-menus .dropdown .tag-container .tag .remove-tag {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 50px;
+  cursor: pointer;
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
 }
 
 #recipesCount {

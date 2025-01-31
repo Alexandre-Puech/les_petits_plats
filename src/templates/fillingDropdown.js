@@ -1,6 +1,7 @@
 // Appliances dropdown
 function fillAppliancesDropdown() {
-  const appliancesDropdown = document.getElementById("appliancesDropdown");
+  //const appliancesDropdown = document.getElementById("appliancesDropdown");
+  const appliancesList = document.getElementById("appliancesList");
   const appliancesSet = new Set();
 
   document
@@ -9,26 +10,20 @@ function fillAppliancesDropdown() {
       appliancesSet.add(appliance.textContent.trim());
     });
 
-  appliancesDropdown.innerHTML = `<form class="search-bar" method="get">
-        <input
-          class="text-search"
-          type="text"
-          name="query"
-        />
-        <button class="search-button" type="submit">Recherche</button>
-      </form>`;
+  appliancesList.innerHTML = "";
 
   appliancesSet.forEach((appliance) => {
-    const option = document.createElement("option");
+    const option = document.createElement("li");
     option.value = appliance;
     option.textContent = appliance;
-    appliancesDropdown.appendChild(option);
+    appliancesList.appendChild(option);
   });
 }
 
 // Ustensils dropdown
 function fillUstensilsDropdown() {
-  const ustensilsDropdown = document.getElementById("ustensilsDropdown");
+  //const ustensilsDropdown = document.getElementById("ustensilsDropdown");
+  const ustensilsList = document.getElementById("ustensilsList");
   const ustensilsSet = new Set();
 
   document
@@ -39,26 +34,20 @@ function fillUstensilsDropdown() {
       });
     });
 
-  ustensilsDropdown.innerHTML = `<form class="search-bar" method="get">
-        <input
-          class="text-search"
-          type="text"
-          name="query"
-        />
-        <button class="search-button" type="submit">Recherche</button>
-      </form>`;
+  ustensilsList.innerHTML = "";
 
   ustensilsSet.forEach((ustensil) => {
-    const option = document.createElement("option");
+    const option = document.createElement("li");
     option.value = ustensil;
     option.textContent = ustensil;
-    ustensilsDropdown.appendChild(option);
+    ustensilsList.appendChild(option);
   });
 }
 
 // Ingredients dropdown
 function fillIngredientsDropdown() {
-  const ingredientsDropdown = document.getElementById("ingredientsDropdown");
+  //const ingredientsDropdown = document.getElementById("ingredientsDropdown");
+  const ingredientList = document.getElementById("ingredientsList");
   const ingredientsSet = new Set();
 
   document
@@ -67,20 +56,13 @@ function fillIngredientsDropdown() {
       ingredientsSet.add(ingredients.textContent.trim());
     });
 
-  ingredientsDropdown.innerHTML = `<form class="search-bar" method="get">
-        <input
-          class="text-search"
-          type="text"
-          name="query"
-        />
-        <button class="search-button" type="submit">Recherche</button>
-      </form>`;
+  ingredientList.innerHTML = "";
 
   ingredientsSet.forEach((ingredient) => {
-    const option = document.createElement("option");
+    const option = document.createElement("li");
     option.value = ingredient;
     option.textContent = ingredient;
-    ingredientsDropdown.appendChild(option);
+    ingredientList.appendChild(option);
   });
 }
 

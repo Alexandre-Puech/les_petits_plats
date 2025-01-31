@@ -202,7 +202,7 @@ header {
   gap: 66px;
   margin-top: 21px;
   font-family: "Manrope", sans-serif;
-  align-items: center;
+  align-items: baseline;
   .dropdown {
     position: relative;
     .dropdown-button {
@@ -221,7 +221,7 @@ header {
         content: "";
         position: absolute;
         right: 18px;
-        top: 50%;
+        top: 28px;
         transform: translateY(-50%);
         border: solid black;
         border-width: 0 2px 2px 0;
@@ -245,12 +245,13 @@ header {
       border-top: none;
       padding-top: 8px;
       gap: 24px;
-      .search-bar {
+      z-index: 1000;
+      .dropdown-search-bar {
         width: 163px;
         height: 36px;
         position: relative;
         margin: 0 auto 8px auto;
-        .text-search {
+        .dropdown-search {
           width: 100%;
           height: 100%;
           border-radius: 2px;
@@ -258,7 +259,39 @@ header {
           border: 1px solid #ccc;
           padding: 0;
         }
-        .search-button {
+        .dropdown-close-button {
+          position: absolute;
+          right: 35px;
+          top: 12px;
+          width: 6px;
+          height: 6px;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          color: #000;
+          display: none;
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 12px;
+            background-color: #000;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #7a7a7a;
+          }
+
+          &::before {
+            transform: translateX(-50%) rotate(45deg);
+          }
+
+          &::after {
+            transform: translateX(-50%) rotate(-45deg);
+          }
+        }
+        .dropdown-search-button {
           position: absolute;
           right: 5px;
           top: 50%;
@@ -273,7 +306,7 @@ header {
           text-indent: -9999px;
         }
       }
-      option {
+      li {
         font-size: 14px;
         font-weight: 400;
         color: black;
@@ -285,12 +318,41 @@ header {
         width: 100%;
         text-align: left;
       }
-      option:hover {
+      li:hover {
         background-color: #ffd15b;
       }
     }
     .show {
       display: block;
+    }
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+      display: none;
+      .tag {
+        display: flex;
+        align-items: center;
+        background-color: #ffd15b;
+        border-radius: 10px;
+        padding: 4px 8px;
+        font-family: "Manrope", sans-serif;
+        font-size: 14px;
+        width: 141px;
+        height: 53px;
+        .remove-tag {
+          background: none;
+          border: none;
+          position: absolute;
+          right: 50px;
+          cursor: pointer;
+          font-family: "Manrope", sans-serif;
+          font-size: 20px;
+          font-weight: 600;
+          color: black;
+        }
+      }
     }
   }
 }
