@@ -107,6 +107,12 @@ header {
   flex-wrap: wrap;
   gap: 48px;
   margin: 55px 102px 201px 102px;
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    font-family: "Manrope", sans-serif;
+  }
 }
 
 .recipe-card {
@@ -320,6 +326,14 @@ header {
       }
       li:hover {
         background-color: #ffd15b;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        color: black;
+        font-family: "Manrope", sans-serif;
+        text-align: left;
+        margin-left: 10px;
       }
     }
     .show {

@@ -103,6 +103,12 @@ header .search-bar .button-search:hover {
   gap: 48px;
   margin: 55px 102px 201px 102px;
 }
+#recipe-cards h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  font-family: "Manrope", sans-serif;
+}
 
 .recipe-card {
   width: 380px;
@@ -312,6 +318,14 @@ header .search-bar .button-search:hover {
 }
 #dropdown-menus .dropdown .dropdown-content li:hover {
   background-color: #ffd15b;
+}
+#dropdown-menus .dropdown .dropdown-content p {
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  font-family: "Manrope", sans-serif;
+  text-align: left;
+  margin-left: 10px;
 }
 #dropdown-menus .dropdown .show {
   display: block;

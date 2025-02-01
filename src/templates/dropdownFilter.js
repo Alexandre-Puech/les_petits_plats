@@ -27,9 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
           return item.textContent.toLowerCase().includes(normalizedUserSearch);
         });
         dropdownList.innerHTML = "";
-        filteredItems.forEach((item) => {
-          dropdownList.appendChild(item);
-        });
+        if (filteredItems.length === 0) {
+          dropdownList.innerHTML = `<p class="no-recipe">Aucune recette ne contient "${userSearch}"</p>`;
+        } else {
+          filteredItems.forEach((item) => {
+            dropdownList.appendChild(item);
+          });
+        }
       } else {
         dropdownCloseButton.style.display = "none";
         dropdownList.innerHTML = "";

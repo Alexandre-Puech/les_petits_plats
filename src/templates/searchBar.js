@@ -12,10 +12,17 @@ searchButton.addEventListener("click", (event) => {
   event.preventDefault();
   const userSearch = document.getElementById("userSearch").value;
   const filteredRecipes = filterRecipes(userSearch, recipes);
-  displayCards(filteredRecipes);
-  updateDropdowns();
-  updateRecipesCount();
-  userSearchInput.innerHTML = "";
+  if (filteredRecipes.length === 0) {
+    const cardsContainer = document.getElementById("recipe-cards");
+    cardsContainer.innerHTML = `<h2 class=noRecipes> Aucune recette ne contient ${userSearch}, vous pouvez chercher "Tarte aux pommes", "poisson", etc.</h2>`;
+    updateDropdowns();
+    updateRecipesCount();
+  } else {
+    displayCards(filteredRecipes);
+    updateDropdowns();
+    updateRecipesCount();
+    userSearchInput.innerHTML = "";
+  }
 });
 
 userSearchInput.addEventListener("input", (event) => {
@@ -24,9 +31,16 @@ userSearchInput.addEventListener("input", (event) => {
   if (userSearch.length >= 3) {
     closeButton.style.display = "block";
     const filteredRecipes = filterRecipes(userSearch, recipes);
-    displayCards(filteredRecipes);
-    updateDropdowns();
-    updateRecipesCount();
+    if (filteredRecipes.length === 0) {
+      const cardsContainer = document.getElementById("recipe-cards");
+      cardsContainer.innerHTML = `<h2 class=noRecipes> Aucune recette ne contient ${userSearch}, vous pouvez chercher "Tarte aux pommes", "poisson", etc.</h2>`;
+      updateDropdowns();
+      updateRecipesCount();
+    } else {
+      displayCards(filteredRecipes);
+      updateDropdowns();
+      updateRecipesCount();
+    }
   } else {
     closeButton.style.display = "none";
     displayCards(recipes);
