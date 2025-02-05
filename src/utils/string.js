@@ -1,5 +1,5 @@
-export function normalizeString(str) {
-  return str
+export function normalizeString(string) {
+  return string
     .trim()
     .toLowerCase()
     .normalize("NFD")
