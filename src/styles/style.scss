@@ -228,30 +228,37 @@ header {
         position: absolute;
         right: 18px;
         top: 28px;
-        transform: translateY(-50%);
         border: solid black;
-        border-width: 0 2px 2px 0;
+        border-width: 0 1px 1px 0;
         display: inline-block;
         padding: 4px;
         transform: translateY(-50%) rotate(45deg);
+        transition: transform 0.3s ease-in-out;
+      }
+      &.open::after {
+        transform: translateY(-50%) rotate(225deg);
       }
     }
     .dropdown-content {
-      display: none;
+      display: block;
       position: absolute;
-      top: 80%;
+      top: 95%;
       left: 0;
       background-color: white;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      margin-top: -8px;
       z-index: 1000;
       width: 100%;
-      height: 315px;
+      height: 0px;
       border-radius: 0 0 11px 11px;
-      overflow: scroll;
+      overflow-y: scroll;
+      overflow-x: hidden;
       border-top: none;
       padding-top: 8px;
       gap: 24px;
       z-index: 1000;
+      opacity: 0;
+      transition: height 0.3s ease-in-out, opacity 0.3s ease-out;
       .dropdown-search-bar {
         width: 163px;
         height: 36px;
@@ -321,7 +328,7 @@ header {
         cursor: pointer;
         background-color: white;
         border: none;
-        width: 100%;
+        width: 95%;
         text-align: left;
       }
       li:hover {
@@ -337,36 +344,39 @@ header {
       }
     }
     .show {
-      display: block;
+      height: 315px;
+      opacity: 1;
     }
-    .tag-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-      display: none;
-      .tag {
-        display: flex;
-        align-items: center;
-        background-color: #ffd15b;
-        border-radius: 10px;
-        padding: 4px 8px;
-        font-family: "Manrope", sans-serif;
-        font-size: 14px;
-        width: 141px;
-        height: 53px;
-        .remove-tag {
-          background: none;
-          border: none;
-          position: absolute;
-          right: 50px;
-          cursor: pointer;
-          font-family: "Manrope", sans-serif;
-          font-size: 20px;
-          font-weight: 600;
-          color: black;
-        }
-      }
+  }
+}
+.tag-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  margin-left: 104px;
+  .tag {
+    display: flex;
+    align-items: center;
+    background-color: #ffd15b;
+    border-radius: 10px;
+    padding: 4px 8px;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    width: 141px;
+    height: 53px;
+    position: relative;
+    .remove-tag {
+      background: none;
+      border: none;
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: black;
     }
   }
 }

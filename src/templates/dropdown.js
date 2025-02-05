@@ -6,9 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
       const dropdownContent = button.nextElementSibling;
       dropdownContent.classList.toggle("show");
+      button.classList.toggle("open");
       document.querySelectorAll(".dropdown-content").forEach((content) => {
         if (content !== dropdownContent) {
           content.classList.remove("show");
+        }
+      });
+      document.querySelectorAll(".dropdown-button").forEach((btn) => {
+        if (btn !== button) {
+          btn.classList.remove("open");
         }
       });
     });

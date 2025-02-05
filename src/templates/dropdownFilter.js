@@ -1,4 +1,3 @@
-import { recipes } from "../data/recipe.js";
 import { normalizeString } from "../utils/string.js";
 import { filterRecipes } from "../algo/algo-for-loop.js";
 import { displayCards } from "./recipe-card.js";
@@ -8,6 +7,7 @@ import {
   filteredRecipes,
   updateFilteredRecipes,
 } from "../shared/filteredRecipes.js";
+import { recipes } from "../data/recipe.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const dropdowns = document.querySelectorAll(".dropdown");
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropdownCloseButton = dropdown.querySelector(
       ".dropdown-close-button"
     );
-    const tagContainer = dropdown.querySelector(".tag-container");
+    const tagContainer = document.getElementById("tag-container");
     const allItems = Array.from(dropdownList.children);
 
     searchInput.addEventListener("input", (event) => {
@@ -50,8 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       dropdownCloseButton.style.display = "none";
       dropdownList.innerHTML = "";
       allItems.forEach((item) => dropdownList.appendChild(item));
-
-      // Réinitialisation du filtrage à l'état actuel de filteredRecipes
       displayCards(filteredRecipes);
       updateRecipesCount();
       updateDropdowns();
@@ -64,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
         searchInput.value = normalizedSelectedOption;
         dropdownCloseButton.style.display = "block";
 
-        // Création du tag visuel
         const tag = document.createElement("div");
         tag.className = "tag";
         tag.textContent = selectedOption;
@@ -77,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dropdown.querySelector(".dropdown-content").classList.remove("show");
 
-        // Mise à jour du filtrage
         updateFilteredRecipes(
           filterRecipes(normalizedSelectedOption, filteredRecipes)
         );
@@ -87,11 +83,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         removeButton.addEventListener("click", () => {
           tag.remove();
-          tagContainer.style.display = "none";
+          if (tagContainer.children.length === 0) {
+            tagContainer.style.display = "none";
+            updateFilteredRecipes(recipes);
+            displayCards(recipes);
+            updateDropdowns();
+            updateRecipesCount();
+          }
 
-          // Mise à jour du filtrage après suppression du tag
-          updateFilteredRecipes(recipes);
-          displayCards(recipes);
+          updateFilteredRecipes(filteredRecipes);
+          displayCards(filteredRecipes);
           updateDropdowns();
           updateRecipesCount();
         });
