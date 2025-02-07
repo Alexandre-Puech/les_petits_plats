@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const tagContainer = document.getElementById("tag-container");
     const allItems = Array.from(dropdownList.children);
+    const searchButton = dropdown.querySelector(".dropdown-search-button");
 
     searchInput.addEventListener("input", (event) => {
       const userSearch = event.target.value;
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (normalizedUserSearch.length >= 3) {
         dropdownCloseButton.style.display = "block";
         const filteredItems = allItems.filter((item) =>
-          item.textContent.toLowerCase().includes(normalizedUserSearch)
+          normalizeString(item.textContent).includes(normalizedUserSearch)
         );
 
         dropdownList.innerHTML = "";
@@ -41,6 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
         dropdownCloseButton.style.display = "none";
         dropdownList.innerHTML = "";
         allItems.forEach((item) => dropdownList.appendChild(item));
+      }
+    });
+
+    searchButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      const userSearch = searchInput.value;
+      const normalizedUserSearch = normalizeString(userSearch);
+      const filteredItems = allItems.filter((item) =>
+        normalizeString(item.textContent).includes(normalizedUserSearch)
+      );
+      dropdownList.innerHTML = "";
+      if (filteredItems.length === 0) {
+        dropdownList.innerHTML = `<p class="no-recipe">Aucune recette ne contient "${userSearch}"</p>`;
+      } else {
+        filteredItems.forEach((item) => dropdownList.appendChild(item));
       }
     });
 
@@ -66,13 +82,14 @@ document.addEventListener("DOMContentLoaded", () => {
         tag.className = "tag";
         tag.textContent = selectedOption;
         const removeButton = document.createElement("button");
-        removeButton.textContent = "x";
+        removeButton.textContent = "";
         removeButton.className = "remove-tag";
         tag.appendChild(removeButton);
         tagContainer.appendChild(tag);
         tagContainer.style.display = "flex";
 
         dropdown.querySelector(".dropdown-content").classList.remove("show");
+        dropdown.querySelector(".dropdown-button").classList.remove("open");
 
         updateFilteredRecipes(
           filterRecipes(normalizedSelectedOption, filteredRecipes)
@@ -80,21 +97,33 @@ document.addEventListener("DOMContentLoaded", () => {
         displayCards(filteredRecipes);
         updateDropdowns();
         updateRecipesCount();
+        searchInput.value = "";
+        dropdownCloseButton.style.display = "none";
 
         removeButton.addEventListener("click", () => {
           tag.remove();
-          if (tagContainer.children.length === 0) {
+          const remainingTags = Array.from(tagContainer.children).map((tag) =>
+            normalizeString(tag.textContent)
+          );
+          if (remainingTags.length === 0) {
             tagContainer.style.display = "none";
             updateFilteredRecipes(recipes);
             displayCards(recipes);
             updateDropdowns();
             updateRecipesCount();
+          } else {
+            let updatedFilteredRecipes = recipes;
+            remainingTags.forEach((tag) => {
+              updatedFilteredRecipes = filterRecipes(
+                tag,
+                updatedFilteredRecipes
+              );
+            });
+            updateFilteredRecipes(updatedFilteredRecipes);
+            displayCards(updatedFilteredRecipes);
+            updateDropdowns();
+            updateRecipesCount();
           }
-
-          updateFilteredRecipes(filteredRecipes);
-          displayCards(filteredRecipes);
-          updateDropdowns();
-          updateRecipesCount();
         });
       }
     });

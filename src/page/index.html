@@ -28,7 +28,7 @@
           placeholder="Rechercher une recette, un ingrédient, ..."
         />
         <button class="close-button" type="button" id="close-button"></button>
-        <input class="button-search" type="submit" id="button-search"></input>
+        <input class="button-search" type="submit" id="button-search" />
       </form>
     </header>
     <main>
@@ -45,30 +45,47 @@
                 name="query"
                 id="ingredientsSearch"
               />
-               <button class="dropdown-close-button" type="button" id="ingredientsClose"></button>
-              <button class="dropdown-search-button" type="submit" id="ingredientsSearchButton">Recherche</button>
+              <button
+                class="dropdown-close-button"
+                type="button"
+                id="ingredientsClose"
+              ></button>
+              <button
+                class="dropdown-search-button"
+                type="submit"
+                id="ingredientsSearchButton"
+              >
+                Recherche
+              </button>
             </form>
             <div class="dropdown-list" id="ingredientsList"></div>
           </div>
-          
         </div>
         <div class="dropdown">
           <button id="appareils-menu" class="dropdown-button">Appareils</button>
           <div id="appliancesDropdown" class="dropdown-content">
-          <form class="dropdown-search-bar" method="get">
-            <input
-              class="dropdown-search"
-              type="text"
-              name="query"
-              id="appliancesSearch"
-            />
-              <button class="dropdown-close-button" type="button" id="appliancesClose"></button>
-            <button class="dropdown-search-button" type="submit" id="appliancesSearchButton">Recherche</button>
-          </form>
-          <div class="dropdown-list" id="appliancesList"></div>
-          
-        </div>
-        
+            <form class="dropdown-search-bar" method="get">
+              <input
+                class="dropdown-search"
+                type="text"
+                name="query"
+                id="appliancesSearch"
+              />
+              <button
+                class="dropdown-close-button"
+                type="button"
+                id="appliancesClose"
+              ></button>
+              <button
+                class="dropdown-search-button"
+                type="submit"
+                id="appliancesSearchButton"
+              >
+                Recherche
+              </button>
+            </form>
+            <div class="dropdown-list" id="appliancesList"></div>
+          </div>
         </div>
         <div class="dropdown">
           <button id="ustensiles-menu" class="dropdown-button">
@@ -82,13 +99,22 @@
                 name="query"
                 id="ustensilsSearch"
               />
-               <button class="dropdown-close-button" type="button" id="ustensilsClose"></button>
-              <button class="dropdown-search-button" type="submit" id="ustensilsSearchButton">Recherche</button>
+              <button
+                class="dropdown-close-button"
+                type="button"
+                id="ustensilsClose"
+              ></button>
+              <button
+                class="dropdown-search-button"
+                type="submit"
+                id="ustensilsSearchButton"
+              >
+                Recherche
+              </button>
             </form>
             <div class="dropdown-list" id="ustensilsList"></div>
-          </div>          
-        </div>       
-      </div>
+          </div>
+        </div>
       </div>
       <div id="recipesCount"></div>
       <div class="tag-container" id="tag-container"></div>
@@ -103,5 +129,6 @@
     <script type="module" src="../algo/algo-for-loop.js"></script>
     <script type="module" src="../templates/searchBar.js"></script>
     <script type="module" src="../templates/dropdownFilter.js"></script>
+    <script type="module" src="../utils/searchInputCleaning.js"></script>
   </body>
 </html>

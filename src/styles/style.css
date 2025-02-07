@@ -365,10 +365,21 @@ header .search-bar .button-search:hover {
   position: absolute;
   right: 10px;
   cursor: pointer;
-  font-family: "Manrope", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: black;
+  width: 12px;
+  height: 12px;
+}
+.tag-container .tag .remove-tag::before, .tag-container .tag .remove-tag::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 12px;
+  background-color: black;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.tag-container .tag .remove-tag::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 #recipesCount {
