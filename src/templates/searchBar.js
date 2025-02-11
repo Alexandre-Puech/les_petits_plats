@@ -23,8 +23,6 @@ searchButton.addEventListener("click", (event) => {
     displayCards(filteredRecipes);
     updateDropdowns();
     updateRecipesCount();
-    // userSearchInput.value = "";
-    // closeButton.style.display = "none";
   }
 });
 

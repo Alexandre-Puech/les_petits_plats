@@ -23,10 +23,6 @@ export function filterRecipes(userSearch, recipes) {
       filteredRecipes.add(recipe);
     }
 
-    // if (normalizeString(recipe.ustensils).includes(normalizedUserSearch)) {
-    //   filteredRecipes.add(recipe);
-    // }
-
     for (let j = 0; j < recipe.ingredients.length; j++) {
       const ing = recipe.ingredients[j];
       if (normalizeString(ing.ingredient).includes(normalizedUserSearch)) {
