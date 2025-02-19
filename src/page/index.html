@@ -19,48 +19,116 @@
         cherchez parmi plus de 1500 recettes<br />
         du quotidien, simples et délicieuses
       </div>
-      <form class="search-bar" method="get">
+      <form class="search-bar" method="get" id="mainSearchBar">
         <input
+          id="userSearch"
           class="text-search"
           type="text"
           name="query"
           placeholder="Rechercher une recette, un ingrédient, ..."
         />
-        <button class="button-search" type="submit">Recherche</button>
+        <button class="close-button" type="button" id="close-button"></button>
+        <input class="button-search" type="submit" id="button-search" />
       </form>
     </header>
     <main>
       <div id="dropdown-menus">
-        <!-- remplacer mes dropdowns par des boutons, et gérer l'ouverture du dropdown en js -->
         <div class="dropdown">
-          <label for="ingredients-menu">Ingrédients</label>
-          <select
-            id="ingredients-menu"
-            name="ingredients"
-            class="dropdown-menu"
-          ></select>
+          <button id="ingredients-menu" class="dropdown-button">
+            Ingrédients
+          </button>
+          <div id="ingredientsDropdown" class="dropdown-content">
+            <form class="dropdown-search-bar" method="get">
+              <input
+                class="dropdown-search"
+                type="text"
+                name="query"
+                id="ingredientsSearch"
+              />
+              <button
+                class="dropdown-close-button"
+                type="button"
+                id="ingredientsClose"
+              ></button>
+              <button
+                class="dropdown-search-button"
+                type="submit"
+                id="ingredientsSearchButton"
+              >
+                Recherche
+              </button>
+            </form>
+            <div class="dropdown-list" id="ingredientsList"></div>
+          </div>
         </div>
         <div class="dropdown">
-          <label for="appareils-menu">Appareils</label>
-          <select
-            id="appareils-menu"
-            name="appareils"
-            class="dropdown-menu"
-          ></select>
+          <button id="appareils-menu" class="dropdown-button">Appareils</button>
+          <div id="appliancesDropdown" class="dropdown-content">
+            <form class="dropdown-search-bar" method="get">
+              <input
+                class="dropdown-search"
+                type="text"
+                name="query"
+                id="appliancesSearch"
+              />
+              <button
+                class="dropdown-close-button"
+                type="button"
+                id="appliancesClose"
+              ></button>
+              <button
+                class="dropdown-search-button"
+                type="submit"
+                id="appliancesSearchButton"
+              >
+                Recherche
+              </button>
+            </form>
+            <div class="dropdown-list" id="appliancesList"></div>
+          </div>
         </div>
         <div class="dropdown">
-          <label for="ustensiles-menu">Ustensiles</label>
-          <select
-            id="ustensiles-menu"
-            name="ustensiles"
-            class="dropdown-menu"
-          ></select>
+          <button id="ustensiles-menu" class="dropdown-button">
+            Ustensiles
+          </button>
+          <div id="ustensilsDropdown" class="dropdown-content">
+            <form class="dropdown-search-bar" method="get">
+              <input
+                class="dropdown-search"
+                type="text"
+                name="query"
+                id="ustensilsSearch"
+              />
+              <button
+                class="dropdown-close-button"
+                type="button"
+                id="ustensilsClose"
+              ></button>
+              <button
+                class="dropdown-search-button"
+                type="submit"
+                id="ustensilsSearchButton"
+              >
+                Recherche
+              </button>
+            </form>
+            <div class="dropdown-list" id="ustensilsList"></div>
+          </div>
         </div>
       </div>
+      <div id="recipesCount"></div>
+      <div class="tag-container" id="tag-container"></div>
       <div id="recipe-cards"></div>
     </main>
     <footer></footer>
     <script type="module" src="../templates/recipe-card.js"></script>
+    <script type="module" src="../templates/fillingDropdown.js"></script>
     <script type="module" src="../templates/dropdown.js"></script>
+    <script type="module" src="../templates/recipesCount.js"></script>
+    <script type="module" src="../utils/string.js"></script>
+    <script type="module" src="../algo/algo-array-method.js"></script>
+    <script type="module" src="../templates/searchBar.js"></script>
+    <script type="module" src="../templates/dropdownFilter.js"></script>
+    <script type="module" src="../utils/searchInputCleaning.js"></script>
   </body>
 </html>

@@ -1,9 +1,6 @@
-import { recipes } from "../data/recipe.js";
-import { normalizeString } from "./normalize-string.js";
+import { normalizeString } from "./../utils/string.js";
 
-const userSearch = "coco";
-
-function filterRecipes(userSearch, recipes) {
+export function filterRecipes(userSearch, recipes) {
   if (userSearch.length < 3) {
     return;
   }
@@ -37,4 +34,3 @@ function filterRecipes(userSearch, recipes) {
   ];
   return Array.from(new Set(result));
 }
-filterRecipes(userSearch, recipes);

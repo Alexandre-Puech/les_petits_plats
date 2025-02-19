@@ -1,82 +1,68 @@
-import { recipes } from "../data/recipe.js";
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdownButtons = document.querySelectorAll(".dropdown-button");
+  const searchBars = document.querySelectorAll(".dropdown-search");
 
-// Appliances dropdownb
-function fillAppliancesDropdown(recipes) {
-  const appliancesDropdown = document.getElementById("appareils-menu");
-  const appliancesSet = new Set();
-
-  recipes.forEach((recipe) => {
-    appliancesSet.add(recipe.appliance);
-  });
-
-  appliancesDropdown.innerHTML = "";
-
-  appliancesSet.forEach((appliance) => {
-    const option = document.createElement("option");
-    option.value = appliance;
-    option.textContent = appliance;
-    appliancesDropdown.appendChild(option);
-  });
-}
-
-setTimeout(() => {
-  fillAppliancesDropdown(recipes);
-}, 100);
-
-// Ustensils dropdown
-function fillUstensilsDropdown(recipes) {
-  const ustensilsDropdown = document.getElementById("ustensiles-menu");
-  const ustensilsSet = new Set();
-
-  recipes.forEach((recipe) => {
-    if (Array.isArray(recipe.ustensils)) {
-      recipe.ustensils.forEach((ustensil) => {
-        ustensilsSet.add(ustensil);
+  dropdownButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const dropdownContent = button.nextElementSibling;
+      dropdownContent.classList.toggle("show");
+      button.classList.toggle("open");
+      document.querySelectorAll(".dropdown-content").forEach((content) => {
+        if (content !== dropdownContent) {
+          content.classList.remove("show");
+        }
       });
-    } else if (recipe.ustensils) {
-      ustensilsSet.add(recipe.ustensils);
+      document.querySelectorAll(".dropdown-button").forEach((btn) => {
+        if (btn !== button) {
+          btn.classList.remove("open");
+        }
+      });
+    });
+  });
+
+  window.addEventListener("click", (event) => {
+    let isClickInsideSearchBar = false;
+    searchBars.forEach((searchBar) => {
+      if (searchBar.contains(event.target)) {
+        isClickInsideSearchBar = true;
+      }
+    });
+
+    if (
+      !event.target.matches(".dropdown-button") &&
+      !isClickInsideSearchBar &&
+      !event.target.closest("li")
+    ) {
+      document.querySelectorAll(".dropdown-content").forEach((content) => {
+        content.classList.remove("show");
+      });
     }
   });
 
-  ustensilsDropdown.innerHTML = "";
-
-  ustensilsSet.forEach((ustensils) => {
-    const option = document.createElement("option");
-    option.value = ustensils;
-    option.textContent = ustensils;
-    ustensilsDropdown.appendChild(option);
+  const searchButtons = document.querySelectorAll(".dropdown-search-button");
+  searchButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+    });
   });
-}
 
-setTimeout(() => {
-  fillUstensilsDropdown(recipes);
-}, 100);
-
-// Ingredients dropdown
-function fillIngredientsDropdown(recipes) {
-  const ingredientsDropdown = document.getElementById("ingredients-menu");
-  const ingredientsSet = new Set();
-
-  recipes.forEach((recipe) => {
-    if (Array.isArray(recipe.ingredients)) {
-      recipe.ingredients.forEach((ingredients) => {
-        ingredientsSet.add(ingredients.ingredient);
+  const closeButtons = document.querySelectorAll(".dropdown-close-button");
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const searchInput = button.previousElementSibling;
+      searchInput.value = "";
+      button.style.display = "none";
+      const dropdownList = button
+        .closest(".dropdown-content")
+        .querySelector(".dropdown-list");
+      const allItems = Array.from(dropdownList.children);
+      dropdownList.innerHTML = "";
+      allItems.forEach((item) => {
+        dropdownList.appendChild(item);
       });
-    } else if (recipe.ingredients) {
-      ingredientsSet.add(recipe.ingredients);
-    }
+    });
   });
-
-  ingredientsDropdown.innerHTML = "";
-
-  ingredientsSet.forEach((ingredients) => {
-    const option = document.createElement("option");
-    option.value = ingredients;
-    option.textContent = ingredients;
-    ingredientsDropdown.appendChild(option);
-  });
-}
-
-setTimeout(() => {
-  fillIngredientsDropdown(recipes);
-}, 100);
+});
