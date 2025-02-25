@@ -35,6 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       document.querySelectorAll(".dropdown-content").forEach((content) => {
         content.classList.remove("show");
+        document.querySelectorAll(".dropdown-button").forEach((btn) => {
+          btn.classList.remove("open");
+        });
       });
     }
   });

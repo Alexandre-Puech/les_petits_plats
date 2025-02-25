@@ -1,6 +1,4 @@
-// Appliances dropdown
 function fillAppliancesDropdown() {
-  //const appliancesDropdown = document.getElementById("appliancesDropdown");
   const appliancesList = document.getElementById("appliancesList");
   const appliancesSet = new Set();
 
@@ -20,9 +18,7 @@ function fillAppliancesDropdown() {
   });
 }
 
-// Ustensils dropdown
 function fillUstensilsDropdown() {
-  //const ustensilsDropdown = document.getElementById("ustensilsDropdown");
   const ustensilsList = document.getElementById("ustensilsList");
   const ustensilsSet = new Set();
 
@@ -44,9 +40,7 @@ function fillUstensilsDropdown() {
   });
 }
 
-// Ingredients dropdown
 function fillIngredientsDropdown() {
-  //const ingredientsDropdown = document.getElementById("ingredientsDropdown");
   const ingredientList = document.getElementById("ingredientsList");
   const ingredientsSet = new Set();
 
@@ -66,7 +60,6 @@ function fillIngredientsDropdown() {
   });
 }
 
-// Update dropdowns when the page is loaded and when recipes are updated
 document.addEventListener("DOMContentLoaded", () => {
   fillAppliancesDropdown();
   fillUstensilsDropdown();

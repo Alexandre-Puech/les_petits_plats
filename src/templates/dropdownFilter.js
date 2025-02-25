@@ -1,5 +1,5 @@
 import { normalizeString } from "../utils/string.js";
-import { filterRecipes } from "../algo/algo-for-loop.js";
+import { filterRecipes } from "../algo/algo-array-method.js";
 import { displayCards } from "./recipe-card.js";
 import { updateDropdowns } from "./fillingDropdown.js";
 import { updateRecipesCount } from "./recipesCount.js";
@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dropdown.querySelector(".dropdown-content").classList.remove("show");
         dropdown.querySelector(".dropdown-button").classList.remove("open");
-
         updateFilteredRecipes(
           filterRecipes(normalizedSelectedOption, filteredRecipes)
         );
