@@ -28,7 +28,6 @@ searchButton.addEventListener("click", (event) => {
 
 userSearchInput.addEventListener("input", (event) => {
   const userSearch = event.target.value;
-
   if (userSearch.length >= 3) {
     closeButton.style.display = "block";
     updateFilteredRecipes(filterRecipes(userSearch, filteredRecipes));
@@ -54,7 +53,8 @@ closeButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.getElementById("userSearch").value = "";
   closeButton.style.display = "none";
-  displayCards(recipes);
+  updateFilteredRecipes(filteredRecipes);
+  displayCards(filteredRecipes);
   updateDropdowns();
   updateRecipesCount();
 });

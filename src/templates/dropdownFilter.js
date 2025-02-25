@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dropdown.querySelector(".dropdown-content").classList.remove("show");
         dropdown.querySelector(".dropdown-button").classList.remove("open");
-
         updateFilteredRecipes(
           filterRecipes(normalizedSelectedOption, filteredRecipes)
         );
